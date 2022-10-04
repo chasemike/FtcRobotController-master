@@ -8,10 +8,10 @@ import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Robot {
-    private DcMotor frontRight;
-    private DcMotor backRight;
-    private DcMotor frontLeft;
-    private DcMotor backLeft;
+    private DcMotor frontRight = null;
+    private DcMotor backRight = null;
+    private DcMotor frontLeft = null;
+    private DcMotor backLeft = null;
 
     public void init(HardwareMap hwMap) {
         frontLeft = hwMap.dcMotor.get("front_left");
@@ -31,7 +31,7 @@ public class Robot {
         frontLeft.setPower(power_blue);
         frontRight.setPower(power_red);
 
-        backLeft.setPower(power_red);
-        backRight.setPower(power_blue);
+        backLeft.setPower(-power_red);
+        backRight.setPower(-power_blue);
     }
 }
