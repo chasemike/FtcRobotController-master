@@ -6,12 +6,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Robot {
-    private DcMotor frontRight = null;
-    private DcMotor backRight = null;
-    private DcMotor frontLeft = null;
-    private DcMotor backLeft = null;
+    public DcMotor frontRight = null;
+    public DcMotor backRight = null;
+    public DcMotor frontLeft = null;
+    public DcMotor backLeft = null;
+    public Servo clawLeft = null;
+    public Servo arm;
 
     public void init(HardwareMap hwMap) {
         frontLeft = hwMap.dcMotor.get("front_left");
@@ -23,15 +26,21 @@ public class Robot {
         backRight = hwMap.dcMotor.get("back_right");
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
+//        arm = hwMap.servo.get("arm");
+
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    void mecDrive(double power_red, double power_blue) { //add shit here broski
-        frontLeft.setPower(power_blue);
-        frontRight.setPower(power_red);
-
-        backLeft.setPower(-power_red);
-        backRight.setPower(-power_blue);
+    public void mecDrive(double frontLeft, double frontRight, double backLeft, double backRight) {
+//        frontLeft.setPower(frontLeftPower);
+//        backLeft.setPower(backLeftPower);
+//        frontRight.setPower(frontRightPower);
+//        backRight.setPower(backRightPower);
+        this.frontLeft.setPower(frontLeft);
+        this.frontRight.setPower(frontRight);
+        this.backLeft.setPower(backLeft);
+        this.backRight.setPower(backRight);
     }
 }
